@@ -133,7 +133,7 @@ Project Manager: Documentation, task assignment, team coordination
 
 🚀 How to Run the Project Locally
 1️⃣ Clone the Repository
-git clone https://github.com/your-username/todo-project.git
+git clone https://github.com/Empress0205/todolist_collaborative.git
 cd todo-project
 
 🖥️ Backend Setup (DRF)
