@@ -19,8 +19,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Mount accounts endpoints under /api/accounts/
     path('api/accounts/', include('Accounts.urls')),
-    path('api/', include('To_do_list.urls')),
+    # Mount todo endpoints under /api/tasks/
+    path('api/tasks/', include('To_do_list.urls')),
 
     
 ]
