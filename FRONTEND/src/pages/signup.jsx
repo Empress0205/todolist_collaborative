@@ -1,4 +1,4 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,15 +11,38 @@ const Signup = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
  
- 
- 
- 
- 
- 
- 
- 
- 
- return (
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    if (!formData.username || !formData.password) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/Accounts/signup', formData);
+      console.log('Signup successful:', response.data);
+      navigate('/Login');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Signup failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-8 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-gradient-to-br from-blue-200/30 to-slate-300/20 rounded-br-full"></div>
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-gradient-to-tl from-purple-200/20 to-slate-300/20 rounded-tl-full"></div>
@@ -57,6 +80,26 @@ const Signup = () => {
           </div>
 
           <div className="mb-6">
+            <label htmlFor="email" className="block mb-2 text-gray-700 font-medium text-sm">
+                Email
+            </label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                required
+                disabled={loading}
+                className="w-full px-4 py-3.5 border border-gray-300 rounded-lg text-base bg-gray-50 text-gray-800
+                         transition-all focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4
+                         focus:ring-blue-100 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60"
+            />
+          </div>
+        
+
+          <div className="mb-6">
             <label htmlFor="password" className="block mb-2 text-gray-700 font-medium text-sm">
               Password
             </label>
@@ -75,6 +118,25 @@ const Signup = () => {
             />
           </div>
 
+          <div className="mb-6">
+            <label htmlFor="confirmPassword" className="block mb-2 text-gray-700 font-medium text-sm">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm your password"
+              required
+              disabled={loading}
+              className="w-full px-4 py-3.5 border border-gray-300 rounded-lg text-base bg-gray-50 text-gray-800
+                         transition-all focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4
+                         focus:ring-blue-100 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60"
+            />
+          </div>
+
           <button
             type="submit"
             className="w-full py-3.5 bg-blue-800 text-white rounded-lg text-base font-semibold cursor-pointer
@@ -82,7 +144,7 @@ const Signup = () => {
                        hover:shadow-blue-800/30 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed"
             disabled={loading}
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Loading...' : 'Sign UP'}
           </button>
         </form>
       </div>
@@ -90,4 +152,4 @@ const Signup = () => {
   );
 };
 
-export default Login;
+export default Signup;

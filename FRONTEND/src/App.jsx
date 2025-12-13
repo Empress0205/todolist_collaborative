@@ -5,6 +5,8 @@ import Dashboard from './components/dashboard/Home'
 import CreateTask from './components/tasks/CreateTask'
 import UpdateTask from './components/tasks/UpdateTask'
 import ViewTasks from './components/tasks/ViewTasks'
+import Signup from './pages/signup'
+import Login from './pages/login'
 
 function App() {
   return (

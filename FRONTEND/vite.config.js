@@ -12,6 +12,6 @@ export default defineConfig({
       overlay: false
     },
     // Try different port if 5173 has issues
-    port: 3000
+    port: 4000
   }
 })
