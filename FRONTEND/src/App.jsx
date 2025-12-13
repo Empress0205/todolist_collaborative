@@ -10,9 +10,12 @@ function App() {
   return (
     <Router>
       <Routes>
-          <Route path="/" element={<DashboardLayout />}>
+          <Route path="/" element={<DashboardLayout />}/>
           <Route path="signup" element={<Signup />}  />
           <Route path="login" element={<Login />}  />
+
+          <Route path="/" element={<DashboardLayout />}>
+
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="create-task" element={<CreateTask />} />
