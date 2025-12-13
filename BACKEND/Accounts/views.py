@@ -2,18 +2,17 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-<<<<<<< HEAD
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-
-class CustomLoginView(APIView):
-    def post(self, request):
-        username = request.data.get('username') 
-=======
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import SignupSerializer
+
+
+class CustomLoginView(APIView):
+    def post(self, request):
+        username = request.data.get('username') 
 
 
 class SignupView(APIView):
@@ -52,7 +51,6 @@ class CustomLoginView(APIView):
 
     def post(self, request):
         username = request.data.get('username')
->>>>>>> ccf4d8e9fdf4c6acd5819aa912e498ae951118f7
         password = request.data.get('password')
 
         user = authenticate(username=username, password=password)
@@ -67,12 +65,9 @@ class CustomLoginView(APIView):
                     'email': user.email,
                 }
             })
-<<<<<<< HEAD
+
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-=======
-        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     # accounts/views.py
 
-
-
->>>>>>> ccf4d8e9fdf4c6acd5819aa912e498ae951118f7

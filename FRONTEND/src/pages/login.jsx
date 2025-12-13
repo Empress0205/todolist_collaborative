@@ -20,7 +20,7 @@ const Login = () => {
       return;
     }
     try {
-        const response = await axios.post('http://localhost:8080/api/login', formData);
+        const response = await axios.post('/accounts/login', formData);
         console.log('Login successful:', response.data);
         navigate('/dashboard');
         } catch (err) {

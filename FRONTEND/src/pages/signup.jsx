@@ -24,7 +24,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8080/api/Accounts/signup', formData);
+      const response = await axios.post('/api/accounts/signup', formData);
       console.log('Signup successful:', response.data);
       navigate('/Login');
     } catch (err) {
